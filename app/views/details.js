@@ -8,20 +8,35 @@ app
     });
   }])
 
-  .controller('DetailsCtrl', ['$routeParams', '$scope', 'dataTypes', 'fetchData', function ($routeParams, $scope, dataTypes, fetchData) {
-    var type = $routeParams.type;
-    var id   = $routeParams.id;
-    var validDataType = dataTypes.isValidDataType(type);
-    if(validDataType && id){
-      var methodName = 'get' + type;
-      fetchData[methodName](id)
-        .then(function(data){
-          console.log(data);
-        });
-    }
+  .controller('DetailsCtrl', ['$routeParams', '$scope', 'dataTypes', 'fetchData',
+    function ($routeParams, $scope, dataTypes, fetchData) {
+      $scope.error           = false;
+      $scope.item            = {};
+      $scope.isValidDateType = true;
 
-    $scope.isValidDateType = validDataType;
-    $scope.type                                                                = type;
-    $scope.id                                                                  = id;
-    console.log(type, id, 'is valid: ' + validDataType);
-  }]);
+      var type          = $routeParams.type;
+      var id            = $routeParams.id;
+      var validDataType = dataTypes.isValidDataType(type);
+      if (validDataType && id) {
+        var methodName = 'get' + type;
+        try {
+          fetchData[methodName](id)
+            .then(function (data) {
+              console.log(data);
+              $scope.item = data;
+              $scope.$apply();
+            })
+            .catch(function () {
+              console.log('error 2');
+              $scope.error = true;
+              $scope.$apply();
+            });
+        } catch (e){
+          console.log('error');
+          $scope.error = true;
+          $scope.$apply();
+        }
+      } else {
+        $scope.isValidDateType = false;
+      }
+    }]);

@@ -148,7 +148,7 @@ app
     this.getSpecies    = function (id) {
       return new Promise(function (resolve, reject) {
         try {
-          swapiModule.getVehicles(id, function (item) {
+          swapiModule.getSpecies(id, function (item) {
             resolve(formatSpecies(item));
           });
         } catch (e) {

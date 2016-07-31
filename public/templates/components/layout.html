@@ -1,24 +1,20 @@
-<md-toolbar md-scroll-shrink="false">
-    <div class="md-toolbar-tools">
-        <a href="/#!/">
-            <i class="zmdi zmdi-home zmdi-hc-fw"></i>
-            Home
-        </a>
-        &nbsp;|&nbsp;
-        <a href="/#!/Person/1">
-            Details
-        </a>
-        &nbsp;|&nbsp;
-        <a href="/#!/page-not-found">404</a>
-        <!-- fill up the space between left and right area -->
-        <span flex></span>
-    </div>
-</md-toolbar>
-<div flex layout="row">
-    <md-layout>
-
-        <div layout="column" flex>
-            <ng-transclude></ng-transclude>
+<md-card>
+    <md-toolbar md-scroll-shrink="false">
+        <div class="md-toolbar-tools">
+            <a href="/#!/">
+                <i class="zmdi zmdi-home zmdi-hc-fw"></i>
+                Home
+            </a>
+            <!-- fill up the space between left and right area -->
+            <span flex></span>
         </div>
-    </md-layout>
-</div>
+    </md-toolbar>
+    <div flex layout="row">
+        <md-layout layout-padding>
+
+            <div layout="column" flex>
+                <ng-transclude></ng-transclude>
+            </div>
+        </md-layout>
+    </div>
+</md-card>
