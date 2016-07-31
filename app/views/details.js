@@ -22,7 +22,6 @@ app
         try {
           fetchData[methodName](id)
             .then(function (data) {
-              console.log(data);
               $scope.item = data;
               $scope.$apply();
             })
